@@ -1,11 +1,16 @@
-Description: fix compilation with --no-add-needed
-Origin: http://bazaar.launchpad.net/~ubuntu-branches/ubuntu/quantal/libpst/quantal/view/head:/debian/patches/06-ld-no-add-needed.patch
+From: Leo Costela <costela@debian.org>
+Date: Tue, 17 Oct 2017 14:30:19 +0300
+Subject: ld-no-add-needed
 
-Index: repo/src/Makefile.am
-===================================================================
---- repo.orig/src/Makefile.am	2013-01-16 11:18:02.946848930 +0100
-+++ repo/src/Makefile.am	2013-01-16 11:18:02.942848959 +0100
-@@ -80,7 +80,7 @@
+---
+ src/Makefile.am | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 14ec366..a0deedf 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -80,7 +80,7 @@ else
  endif
  
  libpst_la_SOURCES     = $(common_source) $(common_header)
@@ -14,7 +19,7 @@ Index: repo/src/Makefile.am
  
  EXTRA_DIST =
  if !NEED_XGETOPT
-@@ -92,7 +92,7 @@
+@@ -92,7 +92,7 @@ INCLUDES= -I$(srcdir)/.. $(all_includes)
  
  # the library search path.
  lspst_LDADD       = $(all_libraries) $(PSTLIB) $(LTLIBICONV)

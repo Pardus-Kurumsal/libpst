@@ -1,0 +1,31 @@
+From: Cihangir Akturk <cihangir@pardus.org.tr>
+Date: Tue, 17 Oct 2017 14:32:02 +0300
+Subject: libpst: do not use horrible GNU extensions
+
+get_current_dir_name return a pointer to somewhere only God knows,
+so don't give credit to fucking idiots.
+
+Signed-off-by: Cihangir Akturk <cihangir@pardus.org.tr>
+---
+ src/libpst.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/src/libpst.c b/src/libpst.c
+index ca7fa7f..d1822c4 100644
+--- a/src/libpst.c
++++ b/src/libpst.c
+@@ -291,12 +291,10 @@ static char*            pst_wide_to_single(char *wt, size_t size);
+ 
+ static char *pst_getcwd(void) {
+     char *cwd;
+-#ifdef HAVE_GET_CURRENT_DIR_NAME
+-    cwd = get_current_dir_name();
+-#else
++
+     cwd = pst_malloc(PATH_MAX+1);
+     getcwd(cwd, PATH_MAX+1);
+-#endif
++
+     return cwd;
+ }
+ 
